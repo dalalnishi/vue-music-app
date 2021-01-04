@@ -15,3 +15,10 @@ export default {
   },
 }
 </script>
+<style scoped>
+  #app {
+    background: #efeff6;
+    height: 100vh;
+    overflow: auto;
+  }
+</style>

@@ -1,29 +1,38 @@
 <template>
   <div class="container">
-      <h1>Liked Tracks</h1>
-      <hr />
-      <div @click="goBack" class="icon mb-3 mt-3">
-          <a-icon type="home" title="Back"/>
-      </div>
-    <a-list item-layout="vertical" :data-source="likes" :pagination="pagination">
-        <div slot="footer"><b>Entertainment App 2020</b></div>
-        <a-list-item slot="renderItem" key="item.title" slot-scope="item">
-        <img
-            slot="extra"
-            width="100"
-            height="100"
-            alt="logo"
-            src="../../assets/music.png"
-        />
-        <a-list-item-meta :description="'Album: ' + item.albumName + ' by ' + item.name">
-            <a slot="title">{{ item.trackName }}</a>
-        </a-list-item-meta>
-        <audio controls>
-            <source :src="item.previewURL"/>
-            Your browser does not support the audio tag.
-        </audio>
-        </a-list-item>
-    </a-list>
+    <div class="mt-3 d-flex justify-content-between align-items-center">
+        <span class="track-title">Liked Tracks</span>
+        <div @click="goBack" class="d-flex align-items-center icon">
+            <a-icon type="home" title="Back"/>
+        </div>
+    </div>
+    <hr/>
+    <template v-if="likes.length">
+        <div class="bg-white list-item d-flex mb-3 align-items-center" v-for="like in likes" :key="like.Track_id">
+            <img
+                slot="extra"
+                width="40"
+                height="40"
+                alt="logo"
+                src="../../assets/music.png" class="mr-3"
+            />
+            <div class="details">
+                <div class="title text-truncate">{{ like.trackName }}</div>
+                <div class="subtitle mb-2 text-muted text-truncate">{{ like.albumName }} by {{ like.name }}</div>
+            </div>
+            <audio controls>
+                <source :src="like.previewURL"/>
+                Your browser does not support the audio tag.
+            </audio>
+        </div>
+    </template>
+    <template v-else>
+        <div>
+            <div class="no-found">
+                <img class="w-100" src="../../assets/no-result.png" />
+            </div>
+        </div>
+    </template>
   </div>
 </template>
 
@@ -32,9 +41,6 @@ export default {
     data() {
         return {
             likes: [],
-            pagination: {
-                pageSize: 3,
-            },
         }
     },
     mounted() {
@@ -59,6 +65,31 @@ export default {
         font-size: 18px;
     }
     .icon :hover {
-        color: cornflowerblue;
+        color:#483d8b;
+    }
+    .track-title {
+        font-size: 16px;
+        color: #343a40;
+        font-weight: 700;
+    }
+    .list-item {
+        padding: 10px;
+        box-shadow: 0px 3px 9px 1px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+    .list-item .title {
+        font-size: 16px;
+        color: #343a40;
+        font-weight: 700;
+    }
+    .list-item .sub-title {
+        font-size: 13px;
+        color: #343a401a;
+    }
+    .details {
+        width: calc(100% - 350px);
+    }
+    audio:focus {
+        outline: none;
     }
 </style>

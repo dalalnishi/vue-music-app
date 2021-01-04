@@ -1,44 +1,56 @@
 <template>
   <div class="container">
     <!-- Search -->
-    <b-container class="bv-example-row mb-3 mt-3">
-        <b-row>
-            <b-col cols="9">
-                <a-input-search placeholder="Search by Song, Album or Artist name" v-model="searchText"/>
-            </b-col>
-            <b-col cols="3">
-                <b-button variant="outline-info" class="mb-2 like-icon" @click="userLikes" title="Liked Tracks">
-                    Liked Tracks <a-icon type="like-o" />
-                </b-button>
-            </b-col>
-        </b-row>
-    </b-container>
+    <div class="d-flex mb-3 mt-3">
+        <div class="flex-fill mr-3 flex-grow-1">
+            <b-form-input placeholder="Search by Song, Album or Artist name" v-model="searchText" class="input-search"></b-form-input>
+        </div>
+        <div class="fav-btn">
+            <b-button variant="outline-info" class="like-icon d-flex align-items-center" @click="userLikes" title="Favourites">
+                <span class="mr-3">Favourites</span> <a-icon type="heart" />
+            </b-button>
+        </div>
+    </div>
 
     <!-- Records List -->
-    <a-list item-layout="vertical" :data-source="trackList" :pagination="pagination">
-        <div slot="footer"><b>Entertainment App 2020</b></div>
-        <a-list-item slot="renderItem" key="item.title" slot-scope="item">
-        <template v-for="{ type } in actions" slot="actions">
-            <span :key="type" @click="likeUnlike(item)" class="icon-span">
-                <a-icon :type="type" :class="{active: item.like}"/>
-            </span>
+    <div class="row">
+        <template v-if="trackList.length">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3" v-for="track in trackList" :key="track.Track_id">
+            <div class="w-100 flex-column list-main d-flex justify-content-center align-items-center">
+                <div class="list-img">
+                    <img
+                        slot="extra"
+                        alt="logo"
+                        src="../../assets/music-back.jpg"
+                    />
+                    </div> 
+                    <div class="w-100 list-item mt-3">
+                        <div class="w-100 d-flex justify-content-between">
+                        <div class="d-flex flex-column detail">
+                            <span class="title text-truncate">{{ track.trackName }}</span>
+                            <span class="subtitle mb-2 text-muted text-truncate">{{ track.albumName }} by {{ track.name }}</span>
+                        </div>
+                        <span class="heart-icon d-flex justify-content-between" @click="likeUnlike(track)">
+                            <b-icon class="heart-icon red" icon="heart-fill" v-if="track.like" aria-hidden="true"></b-icon>
+                            <b-icon class="heart-icon" icon="heart" v-else aria-hidden="true"></b-icon>
+                        </span>
+                        </div>
+                        <div class="w-100">
+                            <audio controls class="w-100">
+                                <source :src="track.previewURL"/>
+                                Your browser does not support the audio tag.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </template>
-        <img
-            slot="extra"
-            width="100"
-            height="100"
-            alt="logo"
-            src="../../assets/music.png"
-        />
-        <a-list-item-meta :description="'Album: ' + item.albumName + ' by ' + item.name">
-            <a slot="title">{{ item.trackName }}</a>
-        </a-list-item-meta>
-        <audio controls>
-            <source :src="item.previewURL"/>
-            Your browser does not support the audio tag.
-        </audio>
-        </a-list-item>
-    </a-list>
+        <template v-else>
+            <div class="no-found">
+                <img class="w-100" src="../../assets/no-result.png" />
+            </div>
+        </template>
+    </div>
   </div>
 </template>
 
@@ -47,12 +59,6 @@ export default {
     data() {
         return {
             tracks: [],
-            actions: [
-                { type: 'like-o' },
-            ],
-            pagination: {
-                pageSize: 3,
-            },
             searchText: ""
         }
     },
@@ -100,13 +106,67 @@ export default {
     .like-icon {
         cursor: pointer;
     }
-
-    .active {
-        /* color: cornflowerblue; */
-        color: brown;
-    }
-
     .icon-span {
         font-size: 20px;
+    }
+    .input-search {
+        height: 38px;
+        border-radius: 3rem;
+        line-height: 38px;
+        border-color: #e6e6e6;
+    }
+    .input-search:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    .list-main {
+        background: #fff;
+        border-radius: 5px;
+        padding: 16px;
+    }
+    .list-img {
+        width: 100%;
+        height: 200px;
+    }
+    .list-img img {
+        object-fit: cover;
+        height: 200px;
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+    .list-item .title {
+        font-size: 16px;
+        color: #343a40;
+        font-weight: 700;
+    }
+    .list-item .sub-title {
+        font-size: 13px;
+        color: #343a401a;
+    }
+    .detail {
+        width: calc(100% - 40px);
+    }
+    .heart-icon {
+        width: 40px;
+        cursor: pointer;
+    }
+    .red {
+        fill: red;
+    }
+    .no-found {
+        height: 400px;
+        width: 400px;
+        margin: 0 auto;
+    }
+    .fav-btn .btn-outline-info {
+        color: #483d8b;
+        border-color: #483d8b;
+    }
+    .fav-btn .btn-outline-info:hover  {
+        background-color:  #483d8b;
+        color: white;
+    }
+    audio:focus {
+        outline: none;
     }
 </style>

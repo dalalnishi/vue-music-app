@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row w-100 mt-1">
+    <div class="row w-100">
       <div class="col card">
         <b-form @submit="onSubmit" @reset="onReset" class="card-body">
           <b-form-group id="input-group-1" label="First Name:" label-for="input-fname">
@@ -79,7 +79,7 @@
             <b-form-radio v-model="form.gender" :aria-describedby="ariaDescribedby" name="gender" value="female">Female</b-form-radio>
           </b-form-group>
 
-          <div class="card-footer text-muted">
+          <div class="card-footer text-muted px-0">
             <b-button type="submit" variant="primary" class="mr-3">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
             <b-link @click="redirectToLogin" class="log-link">Already registered? Log-In</b-link>
@@ -88,7 +88,7 @@
       </div>
       <div class="col">
         <center>
-          <img src="../../assets/music.png" style="height: 600px;"/>
+          <img src="../../assets/music.png" style="height: 100vh;"/>
         </center>
       </div>
     </div>

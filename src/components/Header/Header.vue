@@ -1,28 +1,26 @@
 <template>
     <div class="div-main" v-if="authenticated">
-        <div>
-            <router-link to="/dashboard" class="navbar-brand">
-                <img alt="Play Logo" src="../../assets/music.png" class="img-logo ml-2"/>
-                <font style="color: orange;"> Rhythm</font>
+        <div class="navbar d-flex justify-content-between align-items-center">
+            <router-link to="/dashboard" class="d-flex align-items-center">
+                <img alt="Play Logo" src="../../assets/music.png" class="img-logo mr-2" height="40" width="40"/>
+                <font class="text-white font-large"> Rhythm</font>
             </router-link>
-            <ul>
+            <ul class="m-0">
                 <!-- <li class="nav-item" :class="{active: $route.path.match('/')}">
                     <router-link to="/" tag="li" class="nav-link">Sign In</router-link>
                 </li>
                 <li class="nav-item" :class="{active: $route.path.match('/sign-up')}">
                     <router-link to="/sign-up" tag="li" class="nav-link">Signup</router-link>
                 </li> -->
-                <li class="nav-avatar">
-                    <font style="color: orange;">Welcome </font>
+                <li class="nav-avatar d-flex align-items-center">
                     <a-avatar style="color: #f56a00; backgroundColor: #fde3cf">
                         {{ user }}
                     </a-avatar>
+                    <font class="ml-2">Welcome </font>
                 </li>
-                <li class="nav-item" @click="removeAuth">
-                    <router-link to="" tag="li" class="nav-link">
-                        <b-button variant="outline-info" class="mb-2">
-                            <b-icon icon="power" aria-hidden="true"></b-icon> Logout
-                        </b-button>
+                <li class="nav-link d-flex justify-content-center align-items-center" @click="removeAuth">
+                    <router-link to="" tag="div">
+                         <b-icon icon="power" aria-hidden="true"></b-icon>
                     </router-link>
                 </li>
             </ul>
@@ -52,15 +50,12 @@ export default {
 </script>
 
 <style scoped>
-    ul {
-        float: right;
-        color: white;
-        list-style: none;
-        display: inline-flex;
+    .font-large {
+        font-size: 16px;
     }
-    .nav-item li {
-        color: orange !important;
-        font-size: large !important;
+    ul {
+        color: white;
+        display: inline-flex;
     }
     .nav-link {
         cursor: pointer;
@@ -69,19 +64,6 @@ export default {
         background-color: darkslateblue;
     }
     .img-logo {
-        height: 50px;
-        width: 50px;
         cursor: pointer;
-    }
-    .btn-outline-info {
-        color: orange !important;
-        border-color: orange !important;
-        pointer-events: none !important;
-    }
-    .btn-outline-info :hover {
-        background-color: orange !important;
-    }
-    .nav-avatar {
-        padding: 15px;
     }
 </style>

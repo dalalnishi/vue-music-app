@@ -1,13 +1,13 @@
 <template>
   <div>
-      <div class="row w-100 h-100 mt-1">
+      <div class="row w-100 h-100">
         <div class="col">
           <center>
-            <img src="../../assets/music.png" style="height: 500px;"/>
+            <img src="../../assets/music.png" style="height: 100vh;"/>
           </center>
         </div>
         <div class="card col">
-          <b-form @submit="onLogin" class="card-body mt-5">
+          <b-form @submit="onLogin" class="card-body mt-5 d-flex justify-content-center flex-column">
             <b-form-group
               id="input-group-3"
               label="Email address:"
@@ -40,7 +40,7 @@
                 <span v-if="!$v.password.minLength">Password must be of at least 6 characters</span>
               </div>
             </b-form-group>
-            <div class="card-footer text-muted">
+            <div class="card-footer text-muted px-0">
               <b-button type="submit" variant="primary">Login</b-button>
               <b-link @click="redirectToSignUp" class="reg-link">New User? Sign Up</b-link>
             </div>
