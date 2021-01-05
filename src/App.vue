@@ -18,7 +18,7 @@ export default {
 <style scoped>
   #app {
     background: #efeff6;
-    height: 100vh;
+    /* height: 100vh; */
     overflow: auto;
   }
 </style>
