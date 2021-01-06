@@ -49,8 +49,14 @@ const mutations = {
     },
     removeAuth(state) {
         state.token = null;
+        state.userData = {
+            firstName: '',
+            lastName: ''
+        };
         localStorage.removeItem('token');
         localStorage.removeItem('UserID');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
     }
 }
 

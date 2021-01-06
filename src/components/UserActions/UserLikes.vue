@@ -7,7 +7,7 @@
         </div>
     </div>
     <hr/>
-    <template v-if="likes.length">
+    <template v-if="likes && likes.length">
         <div class="bg-white list-item d-flex mb-3 align-items-center" v-for="like in likes" :key="like.Track_id">
             <img
                 slot="extra"

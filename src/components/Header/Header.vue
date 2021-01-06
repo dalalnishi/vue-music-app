@@ -20,7 +20,7 @@
                 </li>
                 <li class="nav-link d-flex justify-content-center align-items-center" @click="removeAuth">
                     <router-link to="" tag="div">
-                         <b-icon icon="power" aria-hidden="true"></b-icon>
+                        <b-icon icon="power" aria-hidden="true"></b-icon>
                     </router-link>
                 </li>
             </ul>

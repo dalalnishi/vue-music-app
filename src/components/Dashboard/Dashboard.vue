@@ -19,8 +19,8 @@
 
     <!-- Records List -->
     <div class="row">
-        <template v-if="searchResult.length">
-            <div class="col-sm-12 col-md-6 col-lg-4 mb-3" v-for="item in searchResult" :key="item.Track_id">
+        <template v-if="searchResult && searchResult.length">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3 list" v-for="item in searchResult" :key="item.Track_id">
                 <div class="w-100 flex-column list-main d-flex justify-content-center align-items-center">
                     <div class="list-img">
                         <img
@@ -48,10 +48,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
         </template>
-        <template v-else-if="tracks.length && searchText.length<3">
-            <div class="col-sm-12 col-md-6 col-lg-4 mb-3" v-for="track in tracks" :key="track.Track_id">
+        <template v-else-if="tracks && tracks.length && searchText.length<3">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3 list" v-for="track in tracks" :key="track.Track_id">
                 <div class="w-100 flex-column list-main d-flex justify-content-center align-items-center">
                     <div class="list-img">
                         <img
@@ -59,9 +59,9 @@
                             alt="logo"
                             src="../../assets/music-back.jpg"
                         />
-                        </div> 
-                        <div class="w-100 list-item mt-3">
-                            <div class="w-100 d-flex justify-content-between">
+                    </div> 
+                    <div class="w-100 list-item mt-3">
+                        <div class="w-100 d-flex justify-content-between">
                             <div class="d-flex flex-column detail">
                                 <span class="title text-truncate">{{ track.trackName }}</span>
                                 <span class="subtitle mb-2 text-muted text-truncate">{{ track.albumName }} by {{ track.name }}</span>
@@ -70,16 +70,16 @@
                                 <b-icon class="heart-icon red" icon="heart-fill" v-if="track.like" aria-hidden="true"></b-icon>
                                 <b-icon class="heart-icon" icon="heart" v-else aria-hidden="true"></b-icon>
                             </span>
-                            </div>
-                            <div class="w-100">
-                                <audio controls class="w-100">
-                                    <source :src="track.previewURL"/>
-                                    Your browser does not support the audio tag.
-                                </audio>
-                            </div>
+                        </div>
+                        <div class="w-100">
+                            <audio controls class="w-100">
+                                <source :src="track.previewURL"/>
+                                Your browser does not support the audio tag.
+                            </audio>
                         </div>
                     </div>
                 </div>
+            </div>
         </template>
         <template v-else>
             <div class="no-found">
@@ -147,7 +147,7 @@ export default {
                 data[index].like = !data[index].like;                
                 this.tracks = data;
             }).catch((err) => {
-                console.log('Failed to load Track records: ' + err);
+                console.log('Failed to add User favourite track: ' + err);
             });
         },
         handleScroll() {

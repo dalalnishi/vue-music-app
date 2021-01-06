@@ -22,3 +22,16 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Run test cases
+```
+npm run test:unit
+```
+
+### Entertainment App
+-> Vuex - State Management
+-> Vue-router - Routing
+-> Bootstrap-vue, Antdesign - UI design
+-> JS debounce - Used for Search feature (To prevent API calling on each key stroke)
+-> Vue-test-utils JEST - UI test cases

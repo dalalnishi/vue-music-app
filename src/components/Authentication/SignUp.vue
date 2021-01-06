@@ -79,7 +79,7 @@
             </b-form-group>
           </div>
           <b-form-group plain label="Gender:" v-slot="{ ariaDescribedby }" class="d-flex">
-            <b-form-radio-group name="plain-inline" plain>
+            <b-form-radio-group name="plain-inline" plain v-model="form.gender">
               <b-form-radio v-model="form.gender" :aria-describedby="ariaDescribedby" name="gender" value="male">Male</b-form-radio>
               <b-form-radio v-model="form.gender" :aria-describedby="ariaDescribedby" name="gender" value="female">Female</b-form-radio>
             </b-form-radio-group>
