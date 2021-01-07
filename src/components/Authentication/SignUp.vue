@@ -12,6 +12,7 @@
                 id="input-fname"
                 v-model="form.fname"
                 placeholder="First name"
+                autocomplete="off"
                 :class="{ 'is-invalid': submitted && $v.form.fname.$error }"
               ></b-form-input>
               <div v-if="submitted && $v.form.fname.$error" class="invalid-feedback">
@@ -24,6 +25,7 @@
                 id="input-lname"
                 v-model="form.lname"
                 placeholder="Last name"
+                autocomplete="off"
                 :class="{ 'is-invalid': submitted && $v.form.lname.$error }"
               ></b-form-input>
               <div v-if="submitted && $v.form.lname.$error" class="invalid-feedback">
@@ -42,6 +44,7 @@
               v-model="form.email"
               type="email"
               placeholder="Enter email"
+              autocomplete="off"
               :class="{ 'is-invalid': submitted && $v.form.email.$error }"
             ></b-form-input>
             <div v-if="submitted && $v.form.email.$error" class="invalid-feedback">

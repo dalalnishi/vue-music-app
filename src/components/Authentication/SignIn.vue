@@ -17,6 +17,7 @@
               v-model="email"
               type="email"
               placeholder="Enter email"
+              autocomplete="off"
               :class="{ 'is-invalid': submitted && $v.email.$error }"
             ></b-form-input>
             <div v-if="submitted && $v.email.$error" class="invalid-feedback">

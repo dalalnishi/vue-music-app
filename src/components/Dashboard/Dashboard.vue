@@ -157,8 +157,12 @@ export default {
                     currentPage: this.currentPage,
                     limit: this.limit 
                 }).then((res) => {
-                    if(res.length === 0 || res.length < this.limit) this.loadMore = false;
-                    this.tracks = this.tracks.concat(res);
+                    if(res) {
+                        this.tracks = this.tracks.concat(res);
+                        if(res.length < this.limit) this.loadMore = false;
+                    } else {
+                        this.loadMore = false;
+                    }
                 }).catch((err) => {
                     console.log('Failed to load Track records: ' + err);
                 });

@@ -34,4 +34,5 @@ npm run test:unit
 -> Vue-router - Routing
 -> Bootstrap-vue, Antdesign - UI design
 -> JS debounce - Used for Search feature (To prevent API calling on each key stroke)
+-> Used Lazy loading for Loading Track records
 -> Vue-test-utils JEST - UI test cases
