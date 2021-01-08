@@ -43,6 +43,12 @@ const mutations = {
     },
     clearData() {
         state.tracks = [];
+    },
+    userLike(state, track) {
+        let data = [...state.tracks];
+        let index = data.findIndex(obj => obj.Track_id === track.Track_id);
+        data[index].like = !data[index].like;                
+        state.tracks = data;
     }
 }
 

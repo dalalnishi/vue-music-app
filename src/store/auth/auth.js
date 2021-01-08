@@ -9,9 +9,9 @@ const state = {
 };
 
 const actions = {
-    registerUser(context, user) {
+    registerUser(context, newUser) {
         return new Promise((resolve, reject) => {
-            axios.post('user/signUp', user).then((result) => {
+            axios.post('user/signUp', newUser).then((result) => {
                 resolve(result.data);
             })
             .catch((err) => {
@@ -21,13 +21,14 @@ const actions = {
         });
     },
 
-    loginUser({commit}, user) {
+    loginUser({commit}, userCredentials) {
         return new Promise((resolve, reject) => {
-            axios.post('user/signIn', user).then((result) => {
+            axios.post('user/signIn', userCredentials).then((result) => {
+                const { user } = result.data;
                 localStorage.setItem('token', result.data.token);
-                localStorage.setItem('UserID', result.data.id);
+                localStorage.setItem('UserID', user.id);
                 commit('setToken');
-                commit('setUserAvatar', result.data);
+                commit('setUserAvatar', user);
                 resolve(result.data);
             })
             .catch((err) => {

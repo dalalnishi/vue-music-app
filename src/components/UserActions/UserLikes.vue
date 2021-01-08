@@ -17,8 +17,8 @@
                 src="../../assets/music.png" class="mr-3"
             />
             <div class="details">
-                <div class="title text-truncate">{{ like.trackName }}</div>
-                <div class="subtitle mb-2 text-muted text-truncate">{{ like.albumName }} by {{ like.name }}</div>
+                <div class="title text-truncate">{{ like.Track_name }}</div>
+                <div class="subtitle mb-2 text-muted text-truncate">{{ like.Album_name }} by {{ like.Artist_name }}</div>
             </div>
             <audio controls>
                 <source :src="like.previewURL"/>

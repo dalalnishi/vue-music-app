@@ -48,26 +48,22 @@ describe('Userlikes component', () => {
             likes: 
             [
                 {
-                    "track_id": "tra.500478553",
-                    "trackName": "WAP (feat. Megan Thee Stallion)",
+                    "Track_id": "tra.500478553",
+                    "Track_name": "WAP (feat. Megan Thee Stallion)",
                     "previewURL": "https://listen.hs.llnwd.net/g3/prvw/1/1/4/0/9/2180090411.mp3",
-                    "album_id": "alb.230477459",
-                    "createdAt": "2020-12-30T12:56:32.000Z",
-                    "updatedAt": "2020-12-30T12:56:32.000Z",
-                    "albumName": "California Sunrise",
-                    "artist_id": "art.214281475",
-                    "name": "Billie Eilish"
+                    "Album_id": "alb.230477459",
+                    "Album_name": "California Sunrise",
+                    "Artist_id": "art.214281475",
+                    "Artist_name": "Billie Eilish"
                 },
                 {
-                    "track_id": "tra.245806622",
-                    "trackName": "I Fall Apart",
+                    "Track_id": "tra.245806622",
+                    "Track_name": "I Fall Apart",
                     "previewURL": "https://listen.hs.llnwd.net/g3/prvw/5/2/4/4/8/2070184425.mp3",
-                    "album_id": "alb.243984585",
-                    "createdAt": "2020-12-30T12:56:32.000Z",
-                    "updatedAt": "2020-12-30T12:56:32.000Z",
-                    "albumName": "24K Magic",
-                    "artist_id": "art.39801162",
-                    "name": "Chris Stapleton"
+                    "Album_id": "alb.243984585",
+                    "Album_name": "24K Magic",
+                    "Artist_id": "art.39801162",
+                    "Artist_name": "Chris Stapleton"
                 }
             ]
         });

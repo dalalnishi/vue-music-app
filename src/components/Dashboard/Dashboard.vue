@@ -63,8 +63,8 @@
                     <div class="w-100 list-item mt-3">
                         <div class="w-100 d-flex justify-content-between">
                             <div class="d-flex flex-column detail">
-                                <span class="title text-truncate">{{ track.trackName }}</span>
-                                <span class="subtitle mb-2 text-muted text-truncate">{{ track.albumName }} by {{ track.name }}</span>
+                                <span class="title text-truncate">{{ track.Track_name }}</span>
+                                <span class="subtitle mb-2 text-muted text-truncate">{{ track.Album_name }} by {{ track.Artist_name }}</span>
                             </div>
                             <span class="heart-icon d-flex justify-content-between" @click="likeUnlike(track)">
                                 <b-icon class="heart-icon red" icon="heart-fill" v-if="track.like" aria-hidden="true"></b-icon>
@@ -122,7 +122,7 @@ export default {
     },
     // computed: {
     //     // Local search filter
-    //     trackList() {
+    //     searchList() {
     //         if(this.searchText && this.searchText.length >= 3) {
     //             return this.tracks.filter((track) => {
     //                 return this.searchText.toLowerCase().split(' ').every(v => track.trackName.toLowerCase().includes(v) 
@@ -130,7 +130,7 @@ export default {
     //             });
     //         }
     //         return this.tracks;
-    //     }
+    //     },
     // },
     methods: {
         userLikes() {
@@ -138,14 +138,10 @@ export default {
         },
         likeUnlike(track) {
             this.$store.dispatch('addUserFavourites', {
-                User_id: localStorage.getItem('UserID'),
-                Track_id: track.track_id
+                user_id: localStorage.getItem('UserID'),
+                track_id: track.Track_id
             }).then(() => {
-                // Updating object of an array
-                var data = [...this.tracks];
-                var index = data.findIndex(obj => obj.track_id === track.track_id);
-                data[index].like = !data[index].like;                
-                this.tracks = data;
+                this.$store.commit('userLike', track);
             }).catch((err) => {
                 console.log('Failed to add User favourite track: ' + err);
             });
@@ -158,8 +154,8 @@ export default {
                     limit: this.limit 
                 }).then((res) => {
                     if(res) {
-                        this.tracks = this.tracks.concat(res);
                         if(res.length < this.limit) this.loadMore = false;
+                        this.tracks = this.$store.state.MediaStore.tracks;
                     } else {
                         this.loadMore = false;
                     }
