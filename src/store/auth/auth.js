@@ -24,11 +24,15 @@ const actions = {
     loginUser({commit}, userCredentials) {
         return new Promise((resolve, reject) => {
             axios.post('user/signIn', userCredentials).then((result) => {
-                const { user } = result.data;
-                localStorage.setItem('token', result.data.token);
-                localStorage.setItem('UserID', user.id);
-                commit('setToken');
-                commit('setUserAvatar', user);
+                if(result.data && result.data.error) {
+                    console.log(result.data.message);
+                } else {
+                    const { user } = result.data;
+                    localStorage.setItem('token', result.data.token);
+                    localStorage.setItem('UserID', user.id);
+                    commit('setToken');
+                    commit('setUserAvatar', user);
+                }
                 resolve(result.data);
             })
             .catch((err) => {

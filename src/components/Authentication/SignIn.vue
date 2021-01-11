@@ -86,8 +86,12 @@ import { required, minLength, email } from 'vuelidate/lib/validators';
             'email': this.email,
             'password': this.password
         }
-        this.$store.dispatch('loginUser', user).then(() => {
+        this.$store.dispatch('loginUser', user).then((res) => {
+          if(res && res.error) {
+            console.log(res.message);
+          } else {
             this.redirectToDashboard();
+          }
         })
         .catch((err) => {
             console.log(err);
