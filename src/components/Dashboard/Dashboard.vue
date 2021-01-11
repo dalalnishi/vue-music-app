@@ -32,8 +32,8 @@
                         <div class="w-100 list-item mt-3">
                             <div class="w-100 d-flex justify-content-between">
                             <div class="d-flex flex-column detail">
-                                <span class="title text-truncate">{{ item.trackName }}</span>
-                                <span class="subtitle mb-2 text-muted text-truncate">{{ item.albumName }} by {{ item.name }}</span>
+                                <span class="title text-truncate">{{ item.Track_name }}</span>
+                                <span class="subtitle mb-2 text-muted text-truncate">{{ item.Album_name }} by {{ item.Artist_name }}</span>
                             </div>
                             <span class="heart-icon d-flex justify-content-between" @click="likeUnlike(item)">
                                 <b-icon class="heart-icon red" icon="heart-fill" v-if="item.like" aria-hidden="true"></b-icon>
@@ -169,7 +169,7 @@ export default {
                 this.$store.dispatch('searchRecords', {
                     searchString: this.searchText
                 }).then((res) => {
-                    this.searchResult = res;                    
+                    if(res) this.searchResult = this.$store.state.MediaStore.searchResult;
                 }).catch((err) => {
                     console.log('Failed to load search records: ' + err);
                 });
